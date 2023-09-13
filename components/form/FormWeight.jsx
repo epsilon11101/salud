@@ -1,9 +1,14 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { FormLabel, Radio, Typography } from "@mui/material";
 import { nanoid } from "nanoid";
+
+import ContentTable from "../diary/contentTable/ContentTable";
+import ContentRow from "../diary/contentTable/ContentRow";
+import { DiaryContentTable } from "../diary/Diary.styled";
 
 import {
   FormContainer,
@@ -33,7 +38,8 @@ const validationSchema = {
   },
 };
 
-const FormWeight = () => {
+const FormWeight = (isLogin) => {
+  const router = useRouter();
   const [onOpen, setOnOpen] = useState(false);
   const {
     register,
@@ -43,12 +49,17 @@ const FormWeight = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    setOnOpen(true);
+    if (isLogin) {
+      router.push("/diary", { shallow: true });
+    } else {
+      setOnOpen(true);
+    }
     console.log(data);
   };
 
   const onCloseModal = (isOpen) => {
     setOnOpen(isOpen);
+    router.push("/new-account", { shallow: true });
   };
 
   return (
@@ -116,7 +127,46 @@ const FormWeight = () => {
         </ButtonStyled>
       </FormContainer>
 
-      {onOpen && <HealthModal openModal={onOpen} closeModal={onCloseModal} />}
+      {onOpen && !isLogin && (
+        <HealthModal openModal={onOpen} closeModal={onCloseModal} />
+      )}
+
+      {isLogin && (
+        <DiaryContentTable sx={{ marginTop: "2rem" }}>
+          <ContentTable title="Resumen para el 13.08.20">
+            <ContentRow
+              content_info="quedan"
+              value="625"
+              units="kcal"
+              isInformative
+            />
+            <ContentRow
+              content_info="consumido"
+              value="2175"
+              units="kcal"
+              isInformative
+            />
+            <ContentRow
+              content_info="tasa diaria"
+              value="2800"
+              units="kcal"
+              isInformative
+            />
+            <ContentRow
+              content_info="n% de lo normal"
+              value="78"
+              units="%"
+              isInformative
+            />
+          </ContentTable>
+          <ContentTable title="Alimentos no recomendados">
+            <ContentRow content_info="productos de harina" />
+            <ContentRow content_info="leche" />
+            <ContentRow content_info="carne roja" />
+            <ContentRow content_info="carnes ahumadas" />
+          </ContentTable>
+        </DiaryContentTable>
+      )}
     </>
   );
 };

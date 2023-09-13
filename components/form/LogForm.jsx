@@ -1,10 +1,12 @@
 "use client";
-import React from "react";
+
 import { Box, Button, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { TextFielContainer, TextFieldStyled } from "./FormWeight.styled";
 import { FormContainer, ButtonContainer } from "./LogForm.styled";
 const LogForm = ({ title, isLogin }) => {
+  const [emptyFields, setEmptyFields] = useState(false);
+
   const {
     register,
     handleSubmit,

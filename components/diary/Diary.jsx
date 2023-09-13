@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { Box, Typography } from "@mui/material";
 import FoodRow from "./foodRow/FoodRow";
 import ContentTable from "./contentTable/ContentTable";
@@ -15,6 +16,11 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import AddIcon from "@mui/icons-material/Add";
 
 const Diary = () => {
+  const router = useRouter();
+  const onRedirectHandler = () => {
+    router.push(`/new-product`, { shallow: true });
+  };
+
   return (
     <>
       <DiaryHeader>
@@ -35,7 +41,7 @@ const Diary = () => {
         <FoodRow food="Berenjena10" grams="100" kcal="320" />
       </DiaryFoodTable>
       <AddFoodItem>
-        <Box>
+        <Box onClick={onRedirectHandler}>
           <AddIcon />
         </Box>
       </AddFoodItem>

@@ -42,6 +42,7 @@ export const AddFoodItem = styled(Box)({
       fill: "#FC842D",
     },
     "&:hover": {
+      cursor: "pointer",
       backgroundColor: "#FC842D",
       "& svg": {
         fill: "white",
