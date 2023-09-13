@@ -1,6 +1,5 @@
-import LogForm from "@/components/form/LogForm";
+import Diary from "@/components/diary/Diary";
 import { Box } from "@mui/material";
-
 const page = () => {
   return (
     <Box
@@ -12,9 +11,10 @@ const page = () => {
         justifyContent: "center",
         alignItems: "center",
         marginTop: "32px",
+        gap: "32px",
       }}
     >
-      <LogForm title="iniciar sesión" isLogin />
+      <Diary />
     </Box>
   );
 };

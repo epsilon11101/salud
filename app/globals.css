@@ -1,0 +1,23 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+}
+
+body {
+    color: #9B9FAA
+}
+
+a {
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 17.01px;
+    text-align: center;
+    letter-spacing: 4%;
+    text-transform: capitalize;
+    color: #9B9FAA
+}
+
+a:hover {
+    cursor: pointer;
+    color: #FC842D;
+}
