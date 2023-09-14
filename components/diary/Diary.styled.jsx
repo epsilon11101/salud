@@ -25,6 +25,9 @@ export const DiaryHeader = styled(Box)({
     linHeight: "21.88px",
     fontWeight: "bold",
   },
+  " & svg:hover": {
+    cursor: "pointer",
+  },
 });
 
 export const DiaryFoodTable = styled(Box)({
