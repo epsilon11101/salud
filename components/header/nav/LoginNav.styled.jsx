@@ -35,3 +35,25 @@ export const LogOutContainer = styled(Box)({
     },
   },
 });
+
+export const UserContainer = styled(Box)({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "40px",
+
+  "& p": {
+    color: "black",
+    fontWeight: "bold",
+    borderRight: "2px solid #9B9FAA",
+    paddingRight: "40px",
+  },
+  "& p:last-child": {
+    color: "#9B9FAA",
+    borderRight: "none",
+    "&:hover": {
+      cursor: "pointer",
+      color: "black",
+    },
+  },
+});

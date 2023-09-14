@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { nanoid } from "nanoid";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
+import { UserNav } from "./LoginNav";
 import {
   NavContainer,
   NavLinks,
@@ -63,39 +64,7 @@ const Nav = ({ islogin }) => {
               ))}
             </NavLinks>
           )}
-          {/* nombre */}
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: "40px",
-
-              "& p": {
-                color: "black",
-                fontWeight: "bold",
-                borderRight: "2px solid #9B9FAA",
-                paddingRight: "40px",
-              },
-              "& p:last-child": {
-                color: "#9B9FAA",
-                borderRight: "none",
-                "&:hover": {
-                  cursor: "pointer",
-                  color: "black",
-                },
-              },
-            }}
-          >
-            <Typography variant="h6" component="p">
-              Aaron
-            </Typography>
-            <Box>
-              <Typography variant="h6" component="p">
-                Exit
-              </Typography>
-            </Box>
-          </Box>
+          <UserNav />
         </>
       )}
       {islogin && (tablet || mobile) && !desktop && (

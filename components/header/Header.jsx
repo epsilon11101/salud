@@ -2,7 +2,7 @@
 import React from "react";
 import { Box } from "@mui/material";
 import Nav from "./nav/Nav";
-import LoginNav from "./nav/LoginNav";
+import { LoginNav } from "./nav/LoginNav";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Background from "../background/Background";
 

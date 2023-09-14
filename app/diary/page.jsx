@@ -1,19 +1,9 @@
 import Diary from "@/components/diary/Diary";
 import { Box } from "@mui/material";
+import { MainContainer } from "@/components/ui/MainContainer/MainContainer.styled";
 const page = () => {
   return (
-    <Box
-      component="section"
-      sx={{
-        width: "90%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "flex-start",
-        paddingLeft: "32px",
-        marginTop: "32px",
-      }}
-    >
+    <Box component="section" sx={MainContainer}>
       <Diary />
     </Box>
   );

@@ -1,7 +1,12 @@
 "use client";
-import { Typography } from "@mui/material";
-import { LoginNavContainer, LogOutContainer } from "./LoginNav.styled";
-const LoginNav = () => {
+import { Typography, Box } from "@mui/material";
+import {
+  LoginNavContainer,
+  LogOutContainer,
+  UserContainer,
+} from "./LoginNav.styled";
+
+export const LoginNav = () => {
   return (
     <LoginNavContainer component="nav">
       <Typography variant="h6" component="p">
@@ -16,4 +21,17 @@ const LoginNav = () => {
   );
 };
 
-export default LoginNav;
+export const UserNav = () => {
+  return (
+    <UserContainer>
+      <Typography variant="h6" component="p">
+        Aaron
+      </Typography>
+      <Box>
+        <Typography variant="h6" component="p">
+          Exit
+        </Typography>
+      </Box>
+    </UserContainer>
+  );
+};

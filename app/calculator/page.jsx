@@ -1,20 +1,10 @@
 import { Box } from "@mui/material";
 import FormWeight from "@/components/form/FormWeight";
 import Report from "@/components/diary/report/Report";
+import { MainContainer } from "@/components/ui/MainContainer/MainContainer.styled";
 const page = () => {
   return (
-    <Box
-      component="section"
-      sx={{
-        width: "90%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "flex-start",
-        paddingLeft: "32px",
-        marginTop: "32px",
-      }}
-    >
+    <Box component="section" sx={MainContainer}>
       <FormWeight islogin={true} />
       <Report />
     </Box>
