@@ -2,23 +2,37 @@ import { styled } from "@mui/system";
 import Link from "next/link";
 import { Box, Modal } from "@mui/material";
 
-export const NavContainer = styled(Box)(({ isLogin }) => ({
+export const NavContainer = styled(Box)(({ islogin }) => ({
   width: "100%",
+  height: "100%",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  gap: !isLogin ? "none" : "96.03px",
+  borderBottom: "none",
+  gap: !islogin ? "none" : "96.03px",
+  borderBottom: "2px solid #E0E0E0",
+  "@media (min-width: 1280px)": {
+    borderBottom: "none",
+    width: "100%",
+    gap: "2rem",
+  },
 }));
 
-export const NavLogo = styled(Link)(({ isLogin }) => ({
+export const NavLogo = styled(Link)(({ islogin }) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  width: !isLogin ? "20%" : "50%",
+  width: !islogin ? "20%" : "50%",
+  height: "44px",
   "& img": {
     width: "100%",
     height: "100%",
     objectFit: "contain",
+  },
+
+  "@media (min-width: 768px) ": {
+    width: !islogin ? "20%" : "50%",
+    height: "66px",
   },
 }));
 
@@ -28,6 +42,18 @@ export const NavLinks = styled(Box)({
   alignItems: "center",
   gap: "6px",
   width: "80%",
+  "@media (min-width: 768px) and (max-width: 1279px)": {
+    width: "100%",
+    justifyContent: "flex-end",
+    gap: "15px",
+  },
+  "@media (min-width: 1280px)": {
+    width: "100%",
+    justifyContent: "flex-start",
+    paddingLeft: "2%",
+    gap: "15px",
+    borderLeft: "2px solid #9B9FAA",
+  },
 });
 
 export const BurgerNav = styled(Box)({

@@ -6,12 +6,13 @@ export default function Home() {
   return (
     <Box
       component="section"
-      width="100%"
       sx={{
+        width: "90%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: "flex-start",
+        paddingLeft: "32px",
         marginTop: "32px",
       }}
     >

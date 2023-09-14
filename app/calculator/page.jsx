@@ -13,7 +13,7 @@ const page = () => {
         marginTop: "32px",
       }}
     >
-      <FormWeight isLogin={true} />
+      <FormWeight islogin={true} />
     </Box>
   );
 };

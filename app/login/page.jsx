@@ -5,16 +5,17 @@ const page = () => {
   return (
     <Box
       component="section"
-      width="100%"
       sx={{
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: "flex-start",
         marginTop: "32px",
+        width: "100% -32px",
+        paddingLeft: "32px",
       }}
     >
-      <LogForm title="iniciar sesión" isLogin />
+      <LogForm title="iniciar sesión" isLogin={true} />
     </Box>
   );
 };

@@ -41,6 +41,12 @@ export const ModalContent = styled(Box)({
     fontSize: "14px",
     linHeight: "17.01px",
   },
+  "@media (min-width: 768px) and (max-width: 1279px)": {
+    width: "50%",
+  },
+  "@media (min-width: 1280px)": {
+    width: "50%",
+  },
 });
 
 export const ModalInfo = styled(Box)({

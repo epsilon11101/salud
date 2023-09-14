@@ -1,6 +1,7 @@
 import Header from "@/components/header/Header";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import HeaderDesktop from "@/components/header/HeaderDesktop";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,8 +13,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Header />
+      <body className={inter.className} style={{ height: "100vh" }}>
+        <Header islogin={true} />
         {children}
       </body>
     </html>

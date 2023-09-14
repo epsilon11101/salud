@@ -12,6 +12,7 @@ import {
   BurgerNav,
   BurgerMenu,
 } from "./Nav.styled";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
@@ -20,8 +21,10 @@ import logoWithText from "/public/assets/logoWithText.svg";
 
 const pages = ["Iniciar Sesión", "Crear Cuenta"];
 
-const Nav = (isLogin) => {
+const Nav = ({ islogin }) => {
   const [onOpen, setOnOpen] = useState(false);
+
+  const tablet = useMediaQuery("(min-width:768px)");
 
   const onOpenMenu = () => {
     setOnOpen(true);
@@ -33,11 +36,11 @@ const Nav = (isLogin) => {
   };
 
   return (
-    <NavContainer component="nav" isLogin={isLogin}>
-      <NavLogo href="" isLogin={isLogin}>
-        <Image src={!isLogin ? logo : logoWithText} alt="img" />
+    <NavContainer component="nav" islogin={islogin}>
+      <NavLogo href="" islogin={islogin}>
+        <Image src={!islogin && !tablet ? logo : logoWithText} alt="img" />
       </NavLogo>
-      {!isLogin && (
+      {!islogin && (
         <NavLinks>
           {pages.map((page) => (
             <Link key={nanoid()} href="">
@@ -46,7 +49,7 @@ const Nav = (isLogin) => {
           ))}
         </NavLinks>
       )}
-      {isLogin && (
+      {islogin && (
         <BurgerNav>
           {!onOpen ? (
             <MenuIcon onClick={onOpenMenu} />
