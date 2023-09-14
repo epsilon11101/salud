@@ -16,6 +16,9 @@ export const NavContainer = styled(Box)(({ islogin }) => ({
     width: "100%",
     gap: "2rem",
   },
+  "@media (min-width: 768px) and (max-width: 1279px)": {
+    gap: "2rem",
+  },
 }));
 
 export const NavLogo = styled(Link)(({ islogin }) => ({
@@ -29,9 +32,12 @@ export const NavLogo = styled(Link)(({ islogin }) => ({
     height: "100%",
     objectFit: "contain",
   },
-
-  "@media (min-width: 768px) ": {
-    width: !islogin ? "20%" : "50%",
+  "@media (min-width: 768px) and (max-width: 1279px)": {
+    width: "80%",
+    height: "66px",
+  },
+  "@media (min-width: 1280px)": {
+    width: "20%",
     height: "66px",
   },
 }));
@@ -49,6 +55,7 @@ export const NavLinks = styled(Box)({
   },
   "@media (min-width: 1280px)": {
     width: "100%",
+
     justifyContent: "flex-start",
     paddingLeft: "2%",
     gap: "15px",

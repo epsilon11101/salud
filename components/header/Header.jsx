@@ -8,6 +8,7 @@ import Background from "../background/Background";
 
 const Header = ({ islogin }) => {
   const desktop = useMediaQuery("(min-width:1279px)");
+  const mobile = useMediaQuery("(max-width:768px)");
 
   const headerStyle = {
     width: "100%",
@@ -25,8 +26,8 @@ const Header = ({ islogin }) => {
   return (
     <Box component="header" sx={headerStyle}>
       <Background />
-      <Nav islogin={false} />
-      {/* {islogin && <LoginNav />} */}
+      <Nav islogin={true} />
+      {islogin && mobile && <LoginNav />}
     </Box>
   );
 };
