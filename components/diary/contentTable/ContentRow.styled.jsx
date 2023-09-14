@@ -1,7 +1,7 @@
 import { styled } from "@mui/system";
 import { Box } from "@mui/material";
 
-export const ContentRowStyled = styled(Box)(({ isInformative }) => ({
+export const ContentRowStyled = styled(Box)(({ isinformative }) => ({
   width: "100%",
   display: "flex",
   flexDirection: "row",
@@ -10,7 +10,7 @@ export const ContentRowStyled = styled(Box)(({ isInformative }) => ({
   textAlign: "left",
   "& p:first-of-type": {
     flexGrow: "10",
-    color: isInformative ? "black" : "inherit",
+    color: isinformative ? "black" : "inherit",
     "&:first-letter": {
       textTransform: "uppercase",
     },

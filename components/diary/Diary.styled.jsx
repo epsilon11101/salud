@@ -1,6 +1,18 @@
 import { styled } from "@mui/system";
 import { Box } from "@mui/material";
 
+export const DiaryWrapper = styled(Box)({
+  width: "60%",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "2rem",
+  "@media (max-width: 1279px)": {
+    width: "100%",
+  },
+});
+
 export const DiaryHeader = styled(Box)({
   display: "flex",
   justifyContent: "center",

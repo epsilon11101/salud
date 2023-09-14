@@ -12,25 +12,25 @@ const Report = () => {
           content_info="quedan"
           value="625"
           units="kcal"
-          isInformative
+          isinformative={true}
         />
         <ContentRow
           content_info="consumido"
           value="2175"
           units="kcal"
-          isInformative
+          isinformative={true}
         />
         <ContentRow
           content_info="tasa diaria"
           value="2800"
           units="kcal"
-          isInformative
+          isinformative={true}
         />
         <ContentRow
           content_info="n% de lo normal"
           value="78"
           units="%"
-          isInformative
+          isinformative={true}
         />
       </ContentTable>
       <ContentTable title="Alimentos no recomendados">

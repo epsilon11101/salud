@@ -70,11 +70,11 @@ export const BurgerNav = styled(Box)({
 });
 
 export const BurgerMenu = styled(Modal)({
-  marginTop: "80px",
+  marginTop: "89px",
   backgroundColor: "#264061",
   "& div.MuiBackdrop-root": {
     backgroundColor: "transparent",
-    marginTop: "80px",
+    marginTop: "89px",
   },
   "& .MuiBox-root": {
     border: "none",
@@ -101,6 +101,12 @@ export const BurgerMenu = styled(Modal)({
         transition: "transform ease 0.5s",
         transform: "scale(1.2)",
       },
+    },
+  },
+  "@media (min-width: 768px) and (max-width: 1279px)": {
+    marginTop: "150px",
+    "& div.MuiBackdrop-root": {
+      marginTop: "150",
     },
   },
 });

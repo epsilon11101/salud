@@ -10,7 +10,7 @@ export const ReportContainer = styled(Box)({
   justifyContent: "center",
   alignItems: "center",
   gap: "40px",
-  backgroundColor: "transparent",
+  backgroundColor: "#F0F1F3",
   margin: "32px 0",
   "@media (min-width: 768px) and (max-width: 1279px)": {
     margin: "0",
@@ -18,7 +18,7 @@ export const ReportContainer = styled(Box)({
     display: "flex",
     flexDirection: "row",
     background: ` right center / 30%   no-repeat url(${tabletSheet.src})`,
-    backgroundColor: "#F0F1F3",
+
     position: "absolute",
     top: "100%",
     left: "0%",
@@ -33,7 +33,6 @@ export const ReportContainer = styled(Box)({
     zIndex: "-1",
     top: "0",
     right: "0",
-    backgroundColor: "#F0F1F3",
     backgroundImage: `url(${sheet.src})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",

@@ -10,7 +10,7 @@ import {
   DiaryHeader,
   DiaryFoodTable,
   AddFoodItem,
-  DiaryContentTable,
+  DiaryWrapper,
 } from "./Diary.styled";
 
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -23,7 +23,7 @@ const Diary = () => {
   };
 
   return (
-    <>
+    <DiaryWrapper>
       <DiaryHeader>
         <Typography variant="h5" component="p">
           13.08.2023
@@ -47,7 +47,7 @@ const Diary = () => {
         </Box>
       </AddFoodItem>
       <Report />
-    </>
+    </DiaryWrapper>
   );
 };
 
