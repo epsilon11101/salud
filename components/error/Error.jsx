@@ -13,6 +13,7 @@ const Error = () => {
           color: "yellow",
           textShadow: "2px 2px 4px #000000",
         },
+
         "& p:last-of-type": {
           fontSize: "5rem",
           fontWeight: "bold",

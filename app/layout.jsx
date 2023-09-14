@@ -1,6 +1,9 @@
+import { Suspense } from "react";
+import { Inter } from "next/font/google";
+
 import Header from "@/components/header/Header";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import Loader from "@/components/loader/Loader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,8 +21,10 @@ export default function RootLayout({ children }) {
           height: "100vh",
         }}
       >
-        <Header islogin={true} />
-        {children}
+        <Suspense fallback={<Loader />}>
+          <Header islogin={true} />
+        </Suspense>
+        <Suspense fallback={<Loader />}>{children}</Suspense>
       </body>
     </html>
   );

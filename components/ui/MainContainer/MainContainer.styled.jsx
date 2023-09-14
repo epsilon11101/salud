@@ -17,3 +17,11 @@ export const MainContainer = {
   paddingLeft: "32px",
   marginTop: "32px",
 };
+
+export const CenterContainer = {
+  width: "100%",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+};
