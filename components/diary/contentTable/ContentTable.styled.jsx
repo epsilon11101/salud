@@ -4,6 +4,14 @@ import { Box } from "@mui/material";
 export const ContentWrapper = styled(Box)({
   width: "100%",
   backgroundColor: "#F0F1F3",
+  "@media (min-width: 1280px)": {
+    width: "50%",
+    backgroundColor: "transparent",
+  },
+  "@media (min-width: 768px) and (max-width: 1279px)": {
+    width: "40%",
+    backgroundColor: "transparent",
+  },
 });
 export const ContentTableStyled = styled(Box)({
   width: "100%",
@@ -22,5 +30,8 @@ export const ContentTableStyled = styled(Box)({
     fontSize: "14px",
     linHeight: "17.01px",
     letterSpacing: "4%",
+  },
+  "@media (min-width: 1280px)": {
+    alignItems: "center",
   },
 });

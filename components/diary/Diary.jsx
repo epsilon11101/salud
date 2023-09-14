@@ -4,6 +4,7 @@ import { Box, Typography } from "@mui/material";
 import FoodRow from "./foodRow/FoodRow";
 import ContentTable from "./contentTable/ContentTable";
 import ContentRow from "./contentTable/ContentRow";
+import Report from "./report/Report";
 
 import {
   DiaryHeader,
@@ -45,40 +46,7 @@ const Diary = () => {
           <AddIcon />
         </Box>
       </AddFoodItem>
-      <DiaryContentTable>
-        <ContentTable title="Resumen para el 13.08.20">
-          <ContentRow
-            content_info="quedan"
-            value="625"
-            units="kcal"
-            isInformative
-          />
-          <ContentRow
-            content_info="consumido"
-            value="2175"
-            units="kcal"
-            isInformative
-          />
-          <ContentRow
-            content_info="tasa diaria"
-            value="2800"
-            units="kcal"
-            isInformative
-          />
-          <ContentRow
-            content_info="n% de lo normal"
-            value="78"
-            units="%"
-            isInformative
-          />
-        </ContentTable>
-        <ContentTable title="Alimentos no recomendados">
-          <ContentRow content_info="productos de harina" />
-          <ContentRow content_info="leche" />
-          <ContentRow content_info="carne roja" />
-          <ContentRow content_info="carnes ahumadas" />
-        </ContentTable>
-      </DiaryContentTable>
+      <Report />
     </>
   );
 };

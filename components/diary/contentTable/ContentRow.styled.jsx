@@ -18,4 +18,7 @@ export const ContentRowStyled = styled(Box)(({ isInformative }) => ({
   "& p:last-child": {
     flexGrow: "2",
   },
+  "@media (min-width: 1280px)": {
+    textAlign: "center",
+  },
 }));
