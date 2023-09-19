@@ -1,7 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import dayjs from "dayjs";
 
 import { Box, Typography } from "@mui/material";
 import FoodRow from "./foodRow/FoodRow";
@@ -18,10 +19,28 @@ import {
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import AddIcon from "@mui/icons-material/Add";
 
+//CUSTOM HOOKS
+import useDay from "@/hooks/useDay";
+
 const Diary = () => {
+  const { useGetDay: getCurrentDay, day, products } = useDay();
   const [openCalendar, setOpenCalendar] = useState(false);
-  const [todayDate, setTodayDate] = useState(new Date().toLocaleDateString());
+  const [todayDate, setTodayDate] = useState(
+    dayjs(new Date().toISOString()).format("YYYY-MM-DD")
+  );
+  const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
+
+  const isPastDate =
+    todayDate === dayjs(new Date().toISOString()).format("YYYY-MM-DD");
+
+  useEffect(() => {
+    if (!isMounted) {
+      setIsMounted(true);
+      return;
+    }
+    getCurrentDay(todayDate);
+  }, [todayDate]);
 
   const onRedirectHandler = () => {
     router.push(`/new-product`, { shallow: true });
@@ -42,24 +61,34 @@ const Diary = () => {
           {todayDate}
         </Typography>
         <CalendarMonthIcon onClick={onOpenCalendarHandler} />
-        {openCalendar && <Calendar selectDate={getTodayDate} />}
+        {openCalendar && (
+          <Calendar selectDate={getTodayDate} onOpen={onOpenCalendarHandler} />
+        )}
       </DiaryHeader>
       <DiaryFoodTable>
-        <FoodRow food="Berenjena1" grams="100" kcal="320" />
-        <FoodRow food="Berenjena" grams="100" kcal="320" />
-        <FoodRow food="Berenjena" grams="100" kcal="320" />
-        <FoodRow food="Berenjena" grams="100" kcal="320" />
-        <FoodRow food="Berenjena" grams="100" kcal="320" />
-        <FoodRow food="Berenjena" grams="100" kcal="320" />
-        <FoodRow food="Berenjena" grams="100" kcal="320" />
-        <FoodRow food="Berenjena" grams="100" kcal="320" />
-        <FoodRow food="Berenjena10" grams="100" kcal="320" />
+        {products?.length > 0 ? (
+          products?.map((product) => (
+            <FoodRow
+              key={product._id}
+              product_info={product}
+              date={todayDate}
+              isPastDate={isPastDate}
+            />
+          ))
+        ) : (
+          <Typography variant="h5" component="p">
+            No tienes productos añadidos
+          </Typography>
+        )}
       </DiaryFoodTable>
-      <AddFoodItem>
-        <Box onClick={onRedirectHandler}>
-          <AddIcon />
-        </Box>
-      </AddFoodItem>
+
+      {isPastDate && (
+        <AddFoodItem>
+          <Box onClick={onRedirectHandler}>
+            <AddIcon />
+          </Box>
+        </AddFoodItem>
+      )}
       <Report />
     </DiaryWrapper>
   );

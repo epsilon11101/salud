@@ -1,10 +1,9 @@
-import { Suspense } from "react";
 import { Inter } from "next/font/google";
-
 import Header from "@/components/header/Header";
 import "./globals.css";
 import Loader from "@/components/loader/Loader";
-
+import Providers from "@/store/provider";
+import { Suspense } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -15,17 +14,18 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={inter.className}
-        style={{
-          height: "100vh",
-        }}
-      >
-        <Suspense fallback={<Loader />}>
-          <Header islogin={true} />
-        </Suspense>
-        <Suspense fallback={<Loader />}>{children}</Suspense>
-      </body>
+      <Providers>
+        <body
+          className={inter.className}
+          style={{
+            height: "100vh",
+          }}
+        >
+          <Header />
+          <Suspense fallback={<Loader />}>{children}</Suspense>
+          {/* {children} */}
+        </body>
+      </Providers>
     </html>
   );
 }

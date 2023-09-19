@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { Typography } from "@mui/material";
@@ -12,12 +13,24 @@ import {
   CloseModal,
 } from "./HealthModal.styled";
 
+//REDUX IMPORTS
+
+//CUSTOM HOOKS
+import { useUser } from "@/hooks/useUser";
+import { nanoid } from "nanoid";
+
 const HealthModal = ({ openModal, closeModal }) => {
+  const router = useRouter();
+  const { userData } = useUser();
+
   const [open, setOpen] = useState(openModal);
 
   const closeModalHandler = () => {
     setOpen(false);
     closeModal(false);
+  };
+  const onRegisterHandler = () => {
+    router.push("/new-account", { shallow: true });
   };
 
   return (
@@ -32,7 +45,7 @@ const HealthModal = ({ openModal, closeModal }) => {
           Tu ingesta diaria recomendada de calorías es:
         </Typography>
         <Typography variant="h1" component="h3">
-          2800 <span>kcal</span>
+          {userData.dailyRate} <span>kcal</span>
         </Typography>
         <ModalInfo>
           <Typography variant="h6" component="h4">
@@ -40,13 +53,17 @@ const HealthModal = ({ openModal, closeModal }) => {
           </Typography>
 
           <ol>
-            <li>Productos de harina</li>
-            <li>Leche</li>
-            <li>Carne roja</li>
-            <li>Carnes ahumadas</li>
+            {userData.notAllowedProducts &&
+              userData.notAllowedProducts.map((product) => (
+                <li key={nanoid()}>{product}</li>
+              ))}
           </ol>
         </ModalInfo>
-        <ButtonStyled type="submit" variant="contained">
+        <ButtonStyled
+          type="submit"
+          variant="contained"
+          onClick={onRegisterHandler}
+        >
           Comienza a perder peso
         </ButtonStyled>
         <CloseModal>

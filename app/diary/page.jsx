@@ -1,3 +1,4 @@
+"use client";
 import Diary from "@/components/diary/Diary";
 import { Box } from "@mui/material";
 import { MainContainer } from "@/components/ui/MainContainer/MainContainer.styled";

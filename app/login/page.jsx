@@ -1,3 +1,4 @@
+"use client";
 import LogForm from "@/components/form/LogForm";
 import { Box } from "@mui/material";
 import { LoginNavContainer } from "@/components/ui/MainContainer/MainContainer.styled";

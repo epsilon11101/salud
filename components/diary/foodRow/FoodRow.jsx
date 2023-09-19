@@ -1,29 +1,49 @@
+"use client";
 import { Box, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-
 import { Row } from "./FoodRow.styled";
 
-const FoodRow = ({ food, grams, kcal }) => {
+//custom hooks
+import useDay from "@/hooks/useDay";
+
+const FoodRow = ({ product_info, date, isPastDate }) => {
+  const { useDeleteDay: deleteProduct } = useDay();
+
+  const onClickHandler = () => {
+    deleteProduct({
+      product_id: product_info.product_id,
+      date,
+    });
+  };
+
   return (
     <Row>
       <Box sx={{ flexGrow: "8" }}>
         <Typography variant="h6" component="p">
-          {food}
+          {product_info.title}
         </Typography>
       </Box>
       <Box sx={{ flexGrow: "1" }}>
         <Typography variant="h6" component="p">
-          {grams} g
+          {product_info.weight} g
         </Typography>
       </Box>
       <Box sx={{ flexGrow: "2" }}>
         <Typography variant="h6" component="p">
-          {kcal} kcal
+          {product_info.calories} kcal
         </Typography>
       </Box>
-      <Box sx={{ flexGrow: "1", borderBottom: "none !important" }}>
-        <DeleteIcon />
-      </Box>
+      {isPastDate && (
+        <Box
+          sx={{
+            flexGrow: "1",
+            borderBottom: "none !important",
+            "&:hover": { cursor: "pointer" },
+          }}
+        >
+          <DeleteIcon onClick={onClickHandler} />
+        </Box>
+      )}
     </Row>
   );
 };

@@ -21,11 +21,12 @@ import logo from "/public/assets/logo.svg";
 import logoWithText from "/public/assets/logoWithText.svg";
 
 const pages = ["Iniciar Sesión", "Crear Cuenta"];
+const href = ["/login", "/new-account"];
 const pagesLogin = ["Diario", "Calculadora"];
+const hrefLogin = ["/diary", "/calculator"];
 
 const Nav = ({ islogin }) => {
   const [onOpen, setOnOpen] = useState(false);
-
   const mobile = useMediaQuery("(max-width:768px)");
   const tablet = useMediaQuery("(min-width:768px)");
   const desktop = useMediaQuery("(min-width:1280px)");
@@ -36,18 +37,17 @@ const Nav = ({ islogin }) => {
 
   const onCloseMenu = () => {
     setOnOpen(false);
-    console.log("cerrando");
   };
 
   return (
     <NavContainer component="nav" islogin={islogin}>
-      <NavLogo href="" islogin={islogin}>
+      <NavLogo href={islogin ? "/calculator" : "/"} islogin={islogin}>
         <Image src={!islogin && !tablet ? logo : logoWithText} alt="img" />
       </NavLogo>
       {!islogin && (
         <NavLinks>
-          {pages.map((page) => (
-            <Link key={nanoid()} href="">
+          {pages.map((page, i) => (
+            <Link key={nanoid()} href={href[i]}>
               {page}
             </Link>
           ))}
@@ -57,8 +57,8 @@ const Nav = ({ islogin }) => {
         <>
           {desktop && (
             <NavLinks>
-              {pagesLogin.map((page) => (
-                <Link key={nanoid()} href="">
+              {pagesLogin.map((page, i) => (
+                <Link key={nanoid()} href={hrefLogin[i]}>
                   {page}
                 </Link>
               ))}

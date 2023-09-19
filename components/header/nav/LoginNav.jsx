@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { Typography, Box } from "@mui/material";
 import {
   LoginNavContainer,
@@ -6,14 +7,26 @@ import {
   UserContainer,
 } from "./LoginNav.styled";
 
+import { useUser } from "@/hooks/useUser";
+import { useDay } from "@/hooks/useDay";
+
 export const LoginNav = () => {
+  const { useLogOut: logOut, user } = useUser();
+  const { useRestoreDay: restoreDay } = useDay();
+  const router = useRouter();
+
+  const onLogoutHandler = () => {
+    restoreDay();
+    logOut();
+  };
+
   return (
     <LoginNavContainer component="nav">
       <Typography variant="h6" component="p">
-        Aaron
+        {user.name}
       </Typography>
       <LogOutContainer>
-        <Typography variant="h6" component="p">
+        <Typography variant="h6" component="p" onClick={onLogoutHandler}>
           Exit
         </Typography>
       </LogOutContainer>
@@ -22,13 +35,21 @@ export const LoginNav = () => {
 };
 
 export const UserNav = () => {
+  const { useLogOut: logOut, user } = useUser();
+  const { useRestoreDay: restoreDay } = useDay();
+  const router = useRouter();
+
+  const onLogoutHandler = () => {
+    restoreDay();
+    logOut();
+  };
   return (
     <UserContainer>
       <Typography variant="h6" component="p">
-        Aaron
+        {user.name}
       </Typography>
       <Box>
-        <Typography variant="h6" component="p">
+        <Typography variant="h6" component="p" onClick={onLogoutHandler}>
           Exit
         </Typography>
       </Box>

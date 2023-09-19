@@ -28,8 +28,8 @@ export const NavLogo = styled(Link)(({ islogin }) => ({
   width: !islogin ? "20%" : "50%",
   height: "44px",
   "& img": {
-    width: "100%",
-    height: "100%",
+    width: "auto",
+    height: "auto",
     objectFit: "contain",
   },
   "@media (min-width: 768px) and (max-width: 1279px)": {

@@ -2,9 +2,13 @@
 
 import { useRouter } from "next/navigation";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { FormLabel, Radio, Typography, Box } from "@mui/material";
+
+//CUSTOM HOOKS
+import { useUser } from "@/hooks/useUser";
+import { useDay } from "@/hooks/useDay";
 
 import {
   FormContainer,
@@ -21,30 +25,78 @@ import {
 
 import HealthModal from "../ui/modal/HealthModal";
 
-const FormWeight = ({ islogin }) => {
+const FormWeight = () => {
+  const { usePostDay: postDay } = useDay();
+
+  const {
+    loading: isLoading,
+    userData,
+    useDailyRate: getDailyRate,
+    isAuth,
+    useUpdateDailyRate: updateDailyRate,
+  } = useUser();
+
+  const [hasMounted, setHasMounted] = useState(false);
   const router = useRouter();
   const [onOpen, setOnOpen] = useState(false);
+  const [updateDay, setUpdateDay] = useState(false);
+
   const {
     register,
     handleSubmit,
     control,
+    setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      weight: userData?.weight || 0,
+      desiredWeight: userData?.desiredWeight || 0,
+      groupBlood: userData?.groupBlood || "1",
+      height: userData?.height || 0,
+      age: userData?.age || 0,
+    },
+  });
 
-  const onSubmit = (data) => {
-    if (islogin) {
-      router.push("/diary", { shallow: true });
-    } else {
-      setOnOpen(true);
+  useEffect(() => {
+    if (isAuth) {
+      setValue("weight", userData.weight);
+      setValue("desiredWeight", userData.desiredWeight);
+      setValue("groupBlood", userData.groupBlood);
+      setValue("height", userData.height);
+      setValue("age", userData.age);
     }
-    console.log(data);
+  }, [isAuth]);
+
+  useEffect(() => {
+    if (hasMounted && !isLoading && !isAuth) {
+      setOnOpen(true);
+    } else {
+      setHasMounted(true);
+    }
+  }, [isLoading]);
+
+  useEffect(() => {
+    if (!updateDay) return;
+    const day_data = {
+      date: new Date().toISOString().slice(0, 10),
+      // ! aqui falta agregar los productos si esque agrego
+      products: [],
+    };
+    postDay(day_data);
+    setUpdateDay(false);
+  }, [updateDay, userData]);
+
+  const onSubmit = async (data) => {
+    if (isAuth) {
+      await updateDailyRate(data);
+      setUpdateDay(true);
+    } else {
+      getDailyRate(data);
+    }
   };
   const onCloseModal = (isOpen) => {
     setOnOpen(isOpen);
-    router.push("/new-account", { shallow: true });
   };
-
-  const mobile = useMediaQuery("(max-width:767px)");
 
   return (
     <>
@@ -60,34 +112,82 @@ const FormWeight = ({ islogin }) => {
               <TextFieldStyled
                 id={"height"}
                 label={"Altura"}
+                type="number"
                 variant="standard"
                 {...register("height", {
-                  required: true,
+                  required: {
+                    value: true,
+                    message: "Altura requerida",
+                  },
+                  valueAsNumber: {
+                    value: true,
+                    message: "Altura debe ser un numero",
+                  },
+                  min: {
+                    value: 1,
+                    message: "La altura debe ser mayor a 1",
+                  },
+                  max: {
+                    value: 250,
+                    message: "La altura debe ser menor a 300",
+                  },
                 })}
               />
-              {errors.height && <span>Altura requerida</span>}
+              {errors.height && <span>{errors.height.message}</span>}
             </TextFielContainer>
             <TextFielContainer>
               <TextFieldStyled
                 id={"age"}
                 label={"Edad"}
                 variant="standard"
+                type="number"
                 {...register("age", {
-                  required: true,
+                  required: {
+                    value: true,
+                    message: "Edad requerida",
+                  },
+                  valueAsNumber: {
+                    value: true,
+                    message: "Edad debe ser un numero",
+                  },
+                  min: {
+                    value: 1,
+                    message: "La edad debe ser mayor a 1",
+                  },
+                  max: {
+                    value: 120,
+                    message: "La edad debe ser menor a 120",
+                  },
                 })}
               />
-              {errors.age && <span>Edad requerida</span>}
+              {errors.age && <span>{errors.age.message}</span>}
             </TextFielContainer>
             <TextFielContainer>
               <TextFieldStyled
                 id={"weight"}
                 label={"Peso Actual"}
+                type="number"
                 variant="standard"
                 {...register("weight", {
-                  required: true,
+                  required: {
+                    value: true,
+                    message: "Peso requerido",
+                  },
+                  valueAsNumber: {
+                    value: true,
+                    message: "Peso debe ser un numero",
+                  },
+                  min: {
+                    value: 1,
+                    message: "El peso debe ser mayor a 1",
+                  },
+                  max: {
+                    value: 300,
+                    message: "El peso debe ser menor a 300",
+                  },
                 })}
               />
-              {errors.weight && <span>Peso requerido</span>}
+              {errors.weight && <span>{errors.weight.message}</span>}
             </TextFielContainer>
           </FieldContainer>
           <FieldContainer sx={{ justifyContent: "flex-start" }}>
@@ -95,19 +195,37 @@ const FormWeight = ({ islogin }) => {
               <TextFieldStyled
                 id={"desiredWeight"}
                 label={"Peso deseado"}
+                type="number"
                 variant="standard"
                 {...register("desiredWeight", {
-                  required: true,
+                  required: {
+                    value: true,
+                    message: "Peso deseado requerido",
+                  },
+                  valueAsNumber: {
+                    value: true,
+                    message: "Peso deseado debe ser un numero",
+                  },
+                  min: {
+                    value: 1,
+                    message: "El peso deseado debe ser mayor a 1",
+                  },
+                  max: {
+                    value: 300,
+                    message: "El peso deseado debe ser menor a 300",
+                  },
                 })}
               />
-              {errors.desiredWeight && <span>Peso deseado requerido</span>}
+              {errors.desiredWeight && (
+                <span>{errors.desiredWeight.message}</span>
+              )}
             </TextFielContainer>
             <Box>
               <FormLabel id="radio-buttons-group-label">
                 Grupo sanguineo
               </FormLabel>
               <Controller
-                name="bloodGroup"
+                name="groupBlood"
                 control={control}
                 defaultValue="1"
                 render={({ field }) => (
@@ -149,7 +267,7 @@ const FormWeight = ({ islogin }) => {
         </ButtonContainer>
       </FormContainer>
 
-      {onOpen && !islogin && (
+      {onOpen && !isAuth && (
         <HealthModal openModal={onOpen} closeModal={onCloseModal} />
       )}
     </>
