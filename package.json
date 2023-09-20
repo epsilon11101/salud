@@ -24,6 +24,7 @@
     "dayjs": "^1.11.9",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
+    "js-cookie": "^3.0.5",
     "nanoid": "^4.0.2",
     "next": "13.4.19",
     "normalize.css": "^8.0.1",

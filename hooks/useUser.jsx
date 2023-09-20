@@ -74,12 +74,12 @@ export const useUser = () => {
   };
 
   const useLogIn = (data) => {
-  
     dispatch(logIn(data));
   };
 
   const useLogOut = async () => {
     dispatch(logOut());
+
     window.location.reload();
     window.location.href = "/login";
   };
