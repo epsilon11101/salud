@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 export const configureAxios = () => {
-  axios.defaults.baseURL = "https://salud-server.vercel.app";
+  axios.defaults.baseURL = "https://saludserver-production.up.railway.app";
 };
 
 //ADD JWT TOKEN TO AXIOS HEADER
