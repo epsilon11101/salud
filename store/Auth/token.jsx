@@ -2,8 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 export const configureAxios = () => {
-  axios.defaults.baseURL = process.env.NEXT_PUBLIC_HEALTH_API;
-  console.log(process.env.NEXT_PUBLIC_HEALTH_API);
+  axios.defaults.baseURL = "https://salud-server.vercel.app";
 };
 
 //ADD JWT TOKEN TO AXIOS HEADER
