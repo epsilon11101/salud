@@ -2,7 +2,8 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 export const configureAxios = () => {
-  axios.defaults.baseURL = "http://localhost:8081/api";
+  axios.defaults.baseURL = process.env.NEXT_PUBLIC_HEALTH_API;
+  console.log(process.env.NEXT_PUBLIC_HEALTH_API);
 };
 
 //ADD JWT TOKEN TO AXIOS HEADER
