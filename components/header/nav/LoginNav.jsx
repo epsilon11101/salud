@@ -15,9 +15,10 @@ export const LoginNav = () => {
   const { useRestoreDay: restoreDay } = useDay();
   const router = useRouter();
 
-  const onLogoutHandler = () => {
+  const onLogoutHandler = async () => {
     restoreDay();
-    logOut();
+    await logOut();
+    window.location.reload();
   };
 
   return (
@@ -39,9 +40,10 @@ export const UserNav = () => {
   const { useRestoreDay: restoreDay } = useDay();
   const router = useRouter();
 
-  const onLogoutHandler = () => {
+  const onLogoutHandler = async () => {
     restoreDay();
-    logOut();
+    await logOut();
+    window.location.reload();
   };
   return (
     <UserContainer>

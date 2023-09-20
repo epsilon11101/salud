@@ -78,8 +78,15 @@ export const useUser = () => {
   };
 
   const useLogOut = async () => {
-    dispatch(logOut());
-    window.location.reload();
+    return new Promise((resolve, reject) => {
+      dispatch(logOut())
+        .then((result) => {
+          resolve(result);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
   };
 
   return {
