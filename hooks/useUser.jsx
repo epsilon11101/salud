@@ -79,9 +79,7 @@ export const useUser = () => {
 
   const useLogOut = async () => {
     dispatch(logOut());
-
     window.location.reload();
-    window.location.href = "/login";
   };
 
   return {
