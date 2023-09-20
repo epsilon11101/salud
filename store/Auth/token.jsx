@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 export const configureAxios = () => {
-  axios.defaults.baseURL = "https://saludserver-production.up.railway.app";
+  axios.defaults.baseURL = "https://saludserver-production.up.railway.app/api";
 };
 
 //ADD JWT TOKEN TO AXIOS HEADER
