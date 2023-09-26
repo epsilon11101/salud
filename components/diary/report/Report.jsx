@@ -14,11 +14,10 @@ const Report = () => {
   const { daily, date, day } = useDay();
   const { userData } = useUser();
 
-  const [showOnly, setIsMounted] = useState(false);
   const [Goal, setGoal] = useState(false);
 
   useEffect(() => {
-    const userGoal = daily.left < 0;
+    const userGoal = daily.left <= 0 && daily.total > 0;
     setGoal(userGoal);
   }, [daily]);
 
