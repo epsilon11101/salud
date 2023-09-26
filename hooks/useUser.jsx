@@ -69,8 +69,8 @@ export const useUser = () => {
     });
   };
 
-  const useSignUp = (data) => {
-    dispatch(signUp(data));
+  const useSignUp = async (data) => {
+    await dispatch(signUp(data));
   };
 
   const useLogIn = (data) => {
