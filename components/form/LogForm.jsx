@@ -31,7 +31,9 @@ const LogForm = ({ title, isLogin }) => {
 
   useEffect(() => {
     const findDay = async () => {
-      if (!isAuth) return;
+      if (!isAuth) {
+        return;
+      }
       //buscar dia
       const day = await getDay(new Date().toISOString().slice(0, 10));
       if (!day) {
@@ -64,7 +66,7 @@ const LogForm = ({ title, isLogin }) => {
     });
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     // create new account
 
     if (!isLogin) {
@@ -77,7 +79,13 @@ const LogForm = ({ title, isLogin }) => {
         age: userData?.age || 0,
       };
 
-      signUp(data);
+      await signUp(data);
+      const day_data = {
+        date: new Date().toISOString().slice(0, 10),
+        products: dayProducts,
+      };
+
+      await postDay(day_data);
 
       return;
     }
@@ -104,7 +112,7 @@ const LogForm = ({ title, isLogin }) => {
               },
               pattern: {
                 value: /^[A-Za-z]+$/i,
-                message: "Nombre sin simbolos",
+                message: "Nombre sin simbolos ni espacios",
               },
             })}
           />
