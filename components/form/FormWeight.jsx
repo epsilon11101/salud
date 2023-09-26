@@ -79,7 +79,6 @@ const FormWeight = () => {
     if (!updateDay) return;
     const day_data = {
       date: new Date().toISOString().slice(0, 10),
-      // ! aqui falta agregar los productos si esque agrego
       products: [],
     };
     postDay(day_data);
@@ -98,6 +97,10 @@ const FormWeight = () => {
     setOnOpen(isOpen);
   };
 
+  const onFocusHandler = (e) => {
+    if (e.target.value === "0") e.target.value = "";
+  };
+
   return (
     <>
       <FormContainer component="form" onSubmit={handleSubmit(onSubmit)}>
@@ -114,6 +117,7 @@ const FormWeight = () => {
                 label={"Altura"}
                 type="number"
                 variant="standard"
+                onFocus={onFocusHandler}
                 {...register("height", {
                   required: {
                     value: true,
@@ -141,6 +145,7 @@ const FormWeight = () => {
                 label={"Edad"}
                 variant="standard"
                 type="number"
+                onFocus={onFocusHandler}
                 {...register("age", {
                   required: {
                     value: true,
@@ -168,6 +173,7 @@ const FormWeight = () => {
                 label={"Peso Actual"}
                 type="number"
                 variant="standard"
+                onFocus={onFocusHandler}
                 {...register("weight", {
                   required: {
                     value: true,
@@ -197,6 +203,7 @@ const FormWeight = () => {
                 label={"Peso deseado"}
                 type="number"
                 variant="standard"
+                onFocus={onFocusHandler}
                 {...register("desiredWeight", {
                   required: {
                     value: true,
